@@ -5,9 +5,10 @@ ADD ansible /srv/ansible
 WORKDIR /srv/ansible
 
 RUN ansible-galaxy install \
-    -r roles.txt \
-    -p roles
+    --role-file=roles.txt \
+    --roles-path=roles \
+    --force
 
 RUN ansible-playbook \
-    -c local \
+    --connection=local \
     site.yml
