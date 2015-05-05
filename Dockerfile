@@ -1,8 +1,8 @@
 FROM ansible/ubuntu14.04-ansible
 MAINTAINER Tung Ha "tunght13488@gmail.com"
 
-ADD ansible /srv/ansible
-WORKDIR /srv/ansible
+ADD ansible /srv/ansible/buildpack-deps
+WORKDIR /srv/ansible/buildpack-deps
 
 RUN ansible-galaxy install \
     --role-file=roles.txt \
@@ -12,3 +12,5 @@ RUN ansible-galaxy install \
 RUN ansible-playbook \
     --connection=local \
     site.yml
+
+RUN rm -rf /srv/ansible/buildpack-deps
